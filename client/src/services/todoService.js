@@ -39,5 +39,21 @@ export const todoService = {
       method: 'DELETE',
     });
     if (!response.ok) throw new Error('Failed to delete task');
+  },
+
+  // Update a todo
+  update: async (id, todoData) => {
+    const response = await fetch(`${API_URL}/${id}/update`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(todoData),
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to update task');
+    }
+    return await response.json();
   }
 };
