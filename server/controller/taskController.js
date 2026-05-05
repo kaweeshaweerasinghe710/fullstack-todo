@@ -13,11 +13,15 @@ exports.getTasks = async (req, res) => {
 // POST a new task
 exports.createTask = async (req, res) => {
   try {
-    const newTask = new Task(req.body);
+    const { title, description } = req.body;
+    if (!title) {
+      return res.status(400).json({ message: "Title is required" });
+    }
+    const newTask = new Task({ title, description });
     await newTask.save();
     res.status(201).json(newTask);
   } catch (error) {
-    res.status(400).json({ message: "Title is required" });
+    res.status(500).json({ message: "Internal server error", error: error.message });
   }
 };
 

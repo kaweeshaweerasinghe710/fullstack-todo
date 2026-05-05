@@ -1,38 +1,43 @@
-let todos = [];
+const API_URL = 'http://localhost:5000/api/tasks';
 
 export const todoService = {
   // Fetch all todos
   getAll: async () => {
-    // Simulate network delay
-    await new Promise(resolve => setTimeout(resolve, 500));
-    return [...todos];
+    const response = await fetch(API_URL);
+    if (!response.ok) throw new Error('Failed to fetch tasks');
+    return await response.json();
   },
 
   // Create a new todo
   create: async (todoData) => {
-    await new Promise(resolve => setTimeout(resolve, 300));
-    const newItem = {
-      ...todoData,
-      _id: Date.now().toString(),
-      done: false,
-      createdAt: new Date().toISOString()
-    };
-    todos = [newItem, ...todos];
-    return newItem;
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(todoData),
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to create task');
+    }
+    return await response.json();
   },
 
   // Toggle done status
   toggleDone: async (id) => {
-    const todoIndex = todos.findIndex(t => t._id === id);
-    if (todoIndex !== -1) {
-      todos[todoIndex] = { ...todos[todoIndex], done: !todos[todoIndex].done };
-      return todos[todoIndex];
-    }
-    return null;
+    const response = await fetch(`${API_URL}/${id}/done`, {
+      method: 'PATCH',
+    });
+    if (!response.ok) throw new Error('Failed to toggle task');
+    return await response.json();
   },
 
   // Remove a todo
   remove: async (id) => {
-    todos = todos.filter(t => t._id !== id);
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) throw new Error('Failed to delete task');
   }
 };
