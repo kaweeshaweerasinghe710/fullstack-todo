@@ -1,16 +1,22 @@
-# React + Vite
+# FocusFlow Frontend (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend application for the Full-Stack TODO Assessment. It is built with **React.js** and **Tailwind CSS** for a modern, responsive user experience.
 
-Currently, two official plugins are available:
+##  How to Set Up and Run
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Navigate to the client directory: cd client
+2. Install the dependencies: npm install
+3. Start the development server: npm run dev   
+4  Open your browser and go to: http://localhost:5173 (or the port shown in your terminal)
 
-## React Compiler
+## Features Included
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Modular Components:  Divided UI into Form, Item, and Page components for clean code.
+Form Validation:     Checks for minimum title length before submission.
+State Management:    Uses custom hooks to manage task data and sync with the API.
+Tailwind Styling:    Clean, minimalist UI with conditional styles for completed tasks.
 
-## Expanding the ESLint configuration
+## Assumptions & Limitations
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+API URL: Assumes the backend is running locally on http://localhost:5000
+Browser: Optimized for modern versions of Chrome, Brave, or Firefox.
