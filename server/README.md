@@ -15,11 +15,11 @@ This is the RESTful API for the TODO application, handling data persistence and 
 
 ## API Endpoints
 
-GET /api/tasks: Fetch all tasks.
-POST /api/tasks: Create a new task (Title and optional Description).
-PUT /api/tasks/:id/update: Update an existing task's details.
-PATCH /api/tasks/:id/done: Toggle the completion status.
-DELETE /api/tasks/:id: Remove a task from the database.
+GET /api/todos: Fetch all tasks.
+POST /api/todos: Create a new task (Title and optional Description).
+PUT /api/todos/:id/update: Update an existing task's details.
+PATCH /api/todos/:id/done: Toggle the completion status.
+DELETE /api/todos/:id: Remove a task from the database.
 
 ## Database Connection Notes
 MongoDB Atlas: I used a cloud-hosted MongoDB Atlas cluster for data persistence.

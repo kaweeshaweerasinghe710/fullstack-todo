@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use('/api/tasks', taskRoutes);
+app.use('/api/todos', taskRoutes);
 
 // DB Connection
 mongoose.connect(process.env.MONGODB_URI)
