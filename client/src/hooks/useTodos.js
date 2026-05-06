@@ -35,12 +35,18 @@ export const useTodos = () => {
     setTodos(prev => prev.filter(t => t._id !== id));
   };
 
+  const updateItem = async (id, data) => {
+    const updated = await todoService.update(id, data);
+    setTodos(prev => prev.map(t => t._id === id ? updated : t));
+  };
+
   return {
     todos,
     loading,
     addItem,
     toggleItem,
     deleteItem,
+    updateItem,
     refresh: fetchData
   };
 };
